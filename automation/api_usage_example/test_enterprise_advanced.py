@@ -7,32 +7,15 @@ logging.basicConfig(level=logging.INFO, format='[%(asctime)s] [%(levelname)s] %(
 
 class TestAutomationApi(AutomationApiBase):
 
-    def __init__(self, base_url, agent_hostname, group_id, api_user, api_key):
+    def __init__(self, base_url, agent_hostname, group_id, api_user, api_key, config_name):
         AutomationApiBase.__init__(self, base_url, agent_hostname, group_id, api_user, api_key)
+        self.config_name = config_name
 
     def clean(self):
         self.post_automation_config("configs/api_0_clean.json")
 
     def run(self):
-        self.post_automation_config("configs/api_0_clean.json")
-        self.wait_for_goal_state()
-        
-        self.post_automation_config("configs/api_1_define_versions.json")
-        self.wait_for_goal_state()
-
-        self.post_automation_config("configs/api_2_install_other_agents.json")
-        self.wait_for_goal_state()
-
-        self.post_automation_config("configs/api_3_create_replica_set.json")
-        self.wait_for_goal_state()
-
-        self.post_automation_config("configs/api_4_upgrade_replica_set.json")
-        self.wait_for_goal_state()
-
-        self.post_automation_config("configs/api_5_replica_set_to_cluster.json")
-        self.wait_for_goal_state()
-
-        self.post_automation_config("configs/api_6_enable_auth.json")
+        self.post_automation_config("configs/%s.json" % self.config_name)
         self.wait_for_goal_state()
 
 
@@ -45,12 +28,24 @@ if __name__ == '__main__':
     parser.add_argument('group_id', help="Group ID")
     parser.add_argument('api_user', help="API User")
     parser.add_argument('api_key', help="API Key")
+    parser.add_argument('config_name', help="ConfigName")
     parser.add_argument('--clean', action='store_true', required=False)
     args = parser.parse_args()
 
-    test = TestAutomationApi(args.base_url, args.agent_hostname, args.group_id, args.api_user, args.api_key)
+    test = TestAutomationApi(
+        args.base_url,
+        args.agent_hostname,
+        args.group_id,
+        args.api_user,
+        args.api_key,
+        args.config_name
+    )
+
     if args.clean:
         test.clean()
     else:
         test.run()
 
+# 541ed2009436399a1f54e01b
+# da736b32-85b3-44c0-b8d0-17e499f52d43
+# python test_enterprise_advanced.py http://localhost:8080 cailinmac 541ed2009436399a1f54e01b cailin.nelson@10gen.com da736b32-85b3-44c0-b8d0-17e499f52d43 ssl_basic
