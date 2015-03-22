@@ -47,6 +47,16 @@ class AutomationApiBase:
         url = "%s/groups/%s/automationStatus" % (self.base_url, self.group_id)
         return self.get(url)
 
+    def post_monitoring_agent_config(self, file_name):
+        url = "%s/groups/%s/automationConfig/monitoringAgentConfig" % (self.base_url, self.group_id)
+        json_body = self.load_config(file_name, substitute_agent_host_names=False)
+        return self.put(url, json_body)
+
+    def post_backup_agent_config(self, file_name):
+        url = "%s/groups/%s/automationConfig/backupAgentConfig" % (self.base_url, self.group_id)
+        json_body = self.load_config(file_name, substitute_agent_host_names=False)
+        return self.put(url, json_body)
+
     def post_automation_config(self, file_name):
         url = "%s/groups/%s/automationConfig" % (self.base_url, self.group_id)
         json_body = self.load_config(file_name)
@@ -78,12 +88,14 @@ class AutomationApiBase:
             logging.error("Response Error Code: %s Detail: %s" % (r.status_code, r.json()['detail']))
             raise ValueError(r.json()['detail'])
 
-    def load_config(self, file_name):
+    def load_config(self, file_name, substitute_agent_host_names=True):
         data = self.load_json(file_name)
-        # Replace the AGENT_HOSTNAME placeholders in the example configs
-        # with real value.
-        self.replace_agent_hostnames(data)
-        self.replace_process_hostnames(data)
+
+        if substitute_agent_host_names:
+            # Replace the AGENT_HOSTNAME placeholders in the example configs
+            # with real value.
+            self.replace_agent_hostnames(data)
+            self.replace_process_hostnames(data)
         return data
 
     def load_json(self, file_name):

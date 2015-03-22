@@ -1,5 +1,6 @@
 import argparse
 import logging
+import os
 
 from automation_api_base import AutomationApiBase
 
@@ -16,6 +17,13 @@ class TestAutomationApi(AutomationApiBase):
 
     def run(self):
         self.post_automation_config("configs/%s.json" % self.config_name)
+
+        if os.path.exists("configs/%s_monitoring_agent.json" % self.config_name):
+            self.post_monitoring_agent_config("configs/%s_monitoring_agent.json" % self.config_name)
+
+        if os.path.exists("configs/%s_backup_agent.json" % self.config_name):
+            self.post_backup_agent_config("configs/%s_backup_agent.json" % self.config_name)
+
         self.wait_for_goal_state()
 
 
@@ -46,6 +54,3 @@ if __name__ == '__main__':
     else:
         test.run()
 
-# 541ed2009436399a1f54e01b
-# da736b32-85b3-44c0-b8d0-17e499f52d43
-# python test_enterprise_advanced.py http://localhost:8080 cailinmac 541ed2009436399a1f54e01b cailin.nelson@10gen.com da736b32-85b3-44c0-b8d0-17e499f52d43 ssl_basic
