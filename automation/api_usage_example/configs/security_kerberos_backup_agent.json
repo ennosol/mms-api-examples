@@ -4,6 +4,6 @@
     "sizeThresholdMB": 1000,
     "timeThresholdHrs": 24
   },
-  "authIdentity": "mms-backup-agent/someserver.example.com@EXAMPLE.COM",
-  "authSecret": "/etc/mongodb-mms/mms-backup-agent.keytab"
+  "kerberosPrincipal": "mms-backup-agent/someserver.example.com@EXAMPLE.COM",
+  "kerberosKeytab": "/etc/mongodb-mms/mms-backup-agent.keytab"
 }

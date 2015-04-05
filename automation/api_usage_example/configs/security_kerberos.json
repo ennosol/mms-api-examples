@@ -43,7 +43,10 @@
             "name": "blue_0",
             "processType": "mongod",
             "version": "3.0.0",
-            "authSchemaVersion": 5
+            "authSchemaVersion": 5,
+            "kerberos": {
+                "keytab": "/etc/mongodb-mms/mongd-blue-keytab"
+            }
         },
         {
             "args2_6": {
@@ -69,7 +72,10 @@
             "name": "blue_1",
             "processType": "mongod",
             "version": "3.0.0",
-            "authSchemaVersion": 5
+            "authSchemaVersion": 5,
+             "kerberos": {
+                "keytab": "/etc/mongodb-mms/mongd-blue-keytab"
+            }
         },
         {
             "args2_6": {
@@ -95,7 +101,10 @@
             "name": "blue_2",
             "processType": "mongod",
             "version": "3.0.0",
-            "authSchemaVersion": 5
+            "authSchemaVersion": 5,
+             "kerberos": {
+                "keytab": "/etc/mongodb-mms/mongd-blue-keytab"
+            }
         }
     ],
     "replicaSets": [
