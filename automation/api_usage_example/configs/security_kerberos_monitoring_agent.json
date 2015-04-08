@@ -4,6 +4,6 @@
     "sizeThresholdMB": 1000,
     "timeThresholdHrs": 24
   },
-  "kerberosPrincipal": "mms-monitoring-agent/someserver.example.com@EXAMPLE.COM",
-  "kerberosKeytab": "/etc/mongodb-mms/mms-monitoring-agent.keytab"
+  "kerberosPrincipal": "monitoring-agent/AGENT_HOSTNAME@MMS.COM",
+  "kerberosKeytab": "/opt/monitoring-agent.keytab"
 }

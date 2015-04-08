@@ -3,12 +3,12 @@
         "downloadBase": "/var/lib/mongodb-mms-automation"
     },
     "ssl": {
-        "CAFilePath": "/etc/mongodb-mms/ca.cert",
+        "CAFilePath": "/opt/ca.pem",
         "clientCertificateMode": "OPTIONAL"
     },
     "mongoDbVersions": [
         {
-            "name": "3.0.0"
+            "name": "3.0.1-ent"
         }
     ],
     "backupVersions": [
@@ -29,7 +29,7 @@
                     "port": 28000,
                     "ssl": {
                         "mode": "requireSSL",
-                        "PEMKeyFile": "/etc/mongodb-mms/blue_0.pem"
+                        "PEMKeyFile": "/opt/mongodb-1.pem"
                     }
                 },
                 "replication": {
@@ -50,7 +50,7 @@
             },
             "name": "blue_0",
             "processType": "mongod",
-            "version": "3.0.0",
+            "version": "3.0.1-ent",
             "authSchemaVersion": 5
         },
         {
@@ -59,7 +59,7 @@
                     "port": 28001,
                     "ssl": {
                         "mode": "requireSSL",
-                        "PEMKeyFile": "/etc/mongodb-mms/blue_0.pem"
+                        "PEMKeyFile": "/opt/mongodb-2.pem"
                     }
                 },
                 "replication": {
@@ -80,7 +80,7 @@
             },
             "name": "blue_1",
             "processType": "mongod",
-            "version": "3.0.0",
+            "version": "3.0.1-ent",
             "authSchemaVersion": 5
         },
         {
@@ -89,7 +89,7 @@
                     "port": 28002,
                     "ssl": {
                         "mode": "requireSSL",
-                        "PEMKeyFile": "/etc/mongodb-mms/blue_0.pem"
+                        "PEMKeyFile": "/opt/mongodb-3.pem"
                     }
                 },
                 "replication": {
@@ -110,7 +110,7 @@
             },
             "name": "blue_2",
             "processType": "mongod",
-            "version": "3.0.0",
+            "version": "3.0.1-ent",
             "authSchemaVersion": 5
         }
     ],

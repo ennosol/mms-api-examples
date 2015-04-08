@@ -24,12 +24,12 @@ class TestAutomationApi(AutomationApiBase):
         if os.path.exists("configs/%s_backup_agent.json" % self.config_name):
             self.post_backup_agent_config("configs/%s_backup_agent.json" % self.config_name)
 
-        self.wait_for_goal_state()
+        #self.wait_for_goal_state()
 
 
 if __name__ == '__main__':
 
-    # python test_automation_api.py http://mms.example.com:8080 mongo-01.example.com 54b5e4df9436322466a89a3e apple@johnandcailin.com 063fc60e-c5eb-4426-85c1-1e650d6228c6
+    # python test_enterprise_advanced.py http://ec2-54-69-72-157.us-west-2.compute.amazonaws.com:8080/ ec2-52-5-159-56.compute-1.amazonaws.com 541ed2009436399a1f54e01b cailin.nelson@10gen.com 786da787-2403-4021-9cac-5a0f170a9e1a
     parser = argparse.ArgumentParser(description='Automation API Demo')
     parser.add_argument('base_url', help="Base URL")
     parser.add_argument('agent_hostname', help="Agent Hostname")
